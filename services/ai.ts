@@ -1,4 +1,3 @@
-
 import { Flashcard } from '../types';
 
 // NOTE: In a production environment, this key should be secured in a backend proxy.
@@ -32,18 +31,18 @@ export const generateAIContent = async (req: AIRequest): Promise<AIResponse> => 
     
     TASK: Create a JSON object containing a deck title, subject, and a list of flashcards.
     
-    OUTPUT FORMAT (JSON ONLY):
+    OUTPUT FORMAT (JSON ONLY, NO MARKDOWN):
     {
-      "deckTitle": "Creative Title for Deck",
-      "subject": "Main Subject (e.g. History, Biology, Physics)",
+      "deckTitle": "Short Title",
+      "subject": "Subject",
       "cards": [
-        { "front": "Question or Concept", "back": "Answer or Definition" }
+        { "front": "Question", "back": "Answer" }
       ]
     }
 
     RULES:
-    1. Return ONLY valid JSON. Do not add markdown formatting (like \`\`\`json).
-    2. Keep answers concise and direct.
+    1. Return ONLY valid JSON.
+    2. Keep answers concise (max 2 sentences).
     3. Ensure the content matches the requested difficulty level.
   `;
 
@@ -62,7 +61,8 @@ export const generateAIContent = async (req: AIRequest): Promise<AIResponse> => 
           }],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 2000,
+            // Aumentado para evitar cortes em respostas longas
+            maxOutputTokens: 8192,
             responseMimeType: "application/json"
           }
         })
@@ -81,8 +81,16 @@ export const generateAIContent = async (req: AIRequest): Promise<AIResponse> => 
     }
 
     // Clean up potential markdown if the model ignores the JSON enforcement
-    const cleanJson = generatedText.replace(/```json/g, '').replace(/```/g, '').trim();
+    // Remove code blocks and whitespace
+    let cleanJson = generatedText.replace(/```json/g, '').replace(/```/g, '').trim();
     
+    // Tentativa simples de correção se a string terminou abruptamente (hack de segurança)
+    if (!cleanJson.endsWith('}')) {
+       // Se cortou no meio de um array, tenta fechar
+       if (cleanJson.lastIndexOf(']') === -1) cleanJson += ']';
+       cleanJson += '}'; 
+    }
+
     const parsedData: AIResponse = JSON.parse(cleanJson);
 
     // Map to ensure cardType is set
