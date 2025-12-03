@@ -1,5 +1,5 @@
 import React from 'react';
-import { Highlighter, FileText, Zap, Copy, X, Trash2 } from 'lucide-react';
+import { Highlighter, FileText, Zap, Copy, X } from 'lucide-react';
 
 interface SelectionToolbarProps {
   position: { x: number; y: number } | null;
