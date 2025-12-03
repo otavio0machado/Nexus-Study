@@ -5,10 +5,10 @@ import {
   Grid, Loader2 
 } from 'lucide-react';
 import { SelectionToolbar } from './SelectionToolbar';
-import { useAnnotationService } from '../../services/annotationService';
-import { formatCitation } from '../../utils/citation';
-import { PDFAnnotation } from '../../types';
-import { api } from '../../services/api';
+import { useAnnotationService } from '@/services/annotationService.ts';
+import { formatCitation } from '@/utils/citation';
+import { PDFAnnotation } from '@/types';
+import { api } from '@/services/api';
 
 // Configuração ROBUSTA do Worker
 // Usando cdnjs que costuma ser mais estável e rápido que unpkg

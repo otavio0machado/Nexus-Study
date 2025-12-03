@@ -1,13 +1,13 @@
 
 import React, { useState, useRef } from 'react';
 import { Upload, FileText, X, Save, AlertCircle, Search, Link as LinkIcon, Plus } from 'lucide-react';
-import { Note, PDFAnnotation } from '../types';
-import { useStorage } from '../contexts/StorageContext';
-import { useAnnotationService } from '../services/annotationService';
-import { QuickCardModal } from '../components/integration/QuickCardModal';
-import { PDFViewer } from '../components/pdf/PDFViewer';
-import { formatCitation } from '../utils/citation';
-import { api } from '../services/api';
+import { Note, PDFAnnotation } from '@/types';
+import { useStorage } from '@/contexts/StorageContext';
+import { useAnnotationService } from '@/services/annotationService';
+import { QuickCardModal } from '@/components/integration/QuickCardModal';
+import { PDFViewer } from '@/components/pdf/PDFViewer';
+import { formatCitation } from '@/utils/citation';
+import { api } from '@/services/api';
 
 export const PDFStudy: React.FC = () => {
     const { state, saveNote } = useStorage();

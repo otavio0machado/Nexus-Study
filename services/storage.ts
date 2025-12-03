@@ -1,5 +1,5 @@
 
-import { AppState, INITIAL_STATE, Deck, Note, ExamResult, Flashcard } from '../types';
+import { AppState, INITIAL_STATE, Flashcard } from '../types';
 import { STORAGE_KEY, MOCK_DATA_INITIALIZED_KEY } from '../constants';
 
 const sanitizeCard = (card: any): Flashcard => ({
@@ -20,14 +20,14 @@ export const getAppState = (): AppState => {
 
   try {
     const parsed: AppState = JSON.parse(data);
-    
+
     if (parsed.decks) {
       parsed.decks = parsed.decks.map(deck => ({
         ...deck,
         cards: Array.isArray(deck.cards) ? deck.cards.map(sanitizeCard) : []
       }));
     } else {
-        parsed.decks = [];
+      parsed.decks = [];
     }
 
     if (!parsed.notes) parsed.notes = [];
@@ -88,6 +88,9 @@ export const initializeMockData = () => {
         id: 'deck_1',
         title: 'Biologia Celular',
         subject: 'Biologia',
+        score: 0,
+        maxScore: 100,
+        details: {},
         cards: [
           createMockCard('c1', 'O que é Mitocôndria?', 'Organela responsável pela respiração celular e produção de ATP.', 'review'),
           createMockCard('c2', 'Função do Ribossomo', 'Síntese de proteínas.', 'new'),
@@ -98,6 +101,9 @@ export const initializeMockData = () => {
         id: 'deck_2',
         title: 'História do Brasil',
         subject: 'História',
+        score: 0,
+        maxScore: 100,
+        details: {},
         cards: [
           createMockCard('c3', 'Ano da Proclamação da República', '1889', 'new')
         ]

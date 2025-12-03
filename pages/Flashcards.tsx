@@ -138,13 +138,9 @@ export const Flashcards: React.FC = () => {
                  <p className="text-xl font-bold text-white">{stats.xp} XP</p>
              </div>
          </div>
-         <div className="glass-panel p-4 rounded-xl flex items-center gap-4">
-             <div className="relative w-12 h-12 flex items-center justify-center rounded-full effect-levitate aura-cyan bg-slate-800/20" style={{animationDelay: '0.2s'}}>
-                 <svg className="absolute inset-0 w-full h-full transform -rotate-90">
-                     <circle cx="24" cy="24" r="18" stroke="#334155" strokeWidth="4" fill="none" />
-                     <circle cx="24" cy="24" r="18" stroke="#0ea5e9" strokeWidth="4" fill="none" strokeDasharray="113" strokeDashoffset={113 - (113 * progressPercent) / 100} strokeLinecap="round" />
-                 </svg>
-                 <Target size={20} className="text-nexus-400 relative z-10" />
+         <div className="glass-panel p-4 rounded-xl flex items-center gap-4 group">
+             <div className="p-3 bg-nexus-500/10 rounded-full text-nexus-500 group-hover:scale-110 transition-transform effect-levitate aura-cyan" style={{animationDelay: '0.2s'}}>
+                 <Target size={24} />
              </div>
              <div>
                  <p className="text-xs text-slate-400 font-bold uppercase">Meta Diária</p>

@@ -7,7 +7,7 @@ export interface Flashcard {
   front: string;
   back: string;
   cardType?: CardType;
-  
+
   // SRS Data (SM-2)
   status: CardStatus;
   interval: number;
@@ -16,11 +16,11 @@ export interface Flashcard {
   lapses: number;
   dueDate: number;
   stepIndex?: number;
-  
+
   // Meta
   createdAt: number;
   lastReviewed?: number;
-  
+
   // Integration / Second Brain
   sourceType?: 'note' | 'pdf';
   sourceId?: string; // ID da nota ou Nome do arquivo PDF
@@ -38,26 +38,12 @@ export interface Deck {
   title: string;
   subject: string;
   categoryId?: string;
-  cards: Flashcard[];
-}
-
-export interface Note {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: number;
-  updatedAt: number;
-}
-
-export interface ExamResult {
-  id: string;
-  date: number;
-  type: 'ENEM' | 'UFRGS' | 'SIMULADO';
   score: number;
   maxScore: number;
   details: {
     [subject: string]: number;
   };
+  cards: Flashcard[];
 }
 
 export interface UserSettings {
@@ -82,6 +68,25 @@ export interface DailyProgress {
   date: string;
   newStudied: number;
   reviewStudied: number;
+}
+
+export interface Note {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+}
+
+export interface ExamResult {
+  id: string;
+  date: number;
+  type: 'ENEM' | 'UFRGS' | 'SIMULADO';
+  score: number;
+  maxScore: number;
+  details: {
+    [subject: string]: number;
+  };
 }
 
 export interface AppState {
