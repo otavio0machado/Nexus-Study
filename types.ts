@@ -94,6 +94,38 @@ export interface AppState {
   dailyProgress: DailyProgress;
 }
 
+// --- PDF Integration Types ---
+export type AnnotationType = 'highlight' | 'underline' | 'comment';
+
+export interface PDFAnnotation {
+  id: string;
+  userId: string;
+  pdfId: string;
+  page: number;
+  text: string;
+  context?: string;
+  bbox: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+  color: string;
+  type: AnnotationType;
+  comment?: string;
+  noteId?: string;
+  createdAt: string;
+}
+
+export interface Citation {
+  text: string;
+  author?: string;
+  title: string;
+  page: number;
+  format: 'ABNT' | 'APA' | 'RAW';
+}
+// -----------------------------
+
 export const DEFAULT_SETTINGS: UserSettings = {
   learningSteps: [1, 10],
   graduatingInterval: 1,
