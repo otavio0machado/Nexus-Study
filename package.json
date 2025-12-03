@@ -14,7 +14,8 @@
     "react-router-dom": "^7.10.0",
     "lucide-react": "^0.555.0",
     "recharts": "^3.5.1",
-    "d3": "^7.9.0"
+    "d3": "^7.9.0",
+    "react-pdf": "^10.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
