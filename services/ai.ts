@@ -3,7 +3,7 @@ import { Flashcard } from '../types';
 
 // NOTE: In a production environment, this key should be secured in a backend proxy.
 // For this client-side demo, we use it directly as requested.
-const API_KEY = "AIzaSyAslVJMu58DcOfKQljwRZT6c4pI01EqlYs";
+const API_KEY = process.env.GOOGLE_API_KEY;
 
 interface AIRequest {
   topic: string;

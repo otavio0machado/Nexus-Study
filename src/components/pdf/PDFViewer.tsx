@@ -8,8 +8,9 @@ import {
 import '../../styles/pdf-viewer.css';
 
 // Configuração do Worker (Essencial para Vite/React)
-// Tenta usar CDN para evitar configurações complexas de build
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+// Para pdfjs v4+/react-pdf v10, o worker é um bundle ESM (`.mjs`) servido via CDN.
+// Usamos HTTPS explícito para evitar problemas em alguns ambientes.
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 // Importar estilos padrão do react-pdf (se não tiver no global, isso ajuda)
 import 'react-pdf/dist/Page/AnnotationLayer.css';
